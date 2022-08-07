@@ -45,3 +45,13 @@ router.get('/', (req, res) => {
     .send('Hello, world!')
     .end();
 });
+
+router.get('/ping', (req, res) => {
+  wsServer.clients.forEach(function(client) {
+    client.send("pong");
+  })
+  res
+    .status(200)
+    .send('pong')
+    .end();
+});
