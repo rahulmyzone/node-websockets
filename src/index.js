@@ -28,9 +28,15 @@ server.on('upgrade', (request, socket, head) => {
 });
 
 router.post('/send', (req, res) => {
-  wsServer.clients.forEach(function(client) {
-    client.send(JSON.stringify(req.body));
-  })
+  try {
+    wsServer.clients.forEach(function(client) {
+      client.send(JSON.stringify(req.body));
+    })
+    res.status(200).send("Message posted successfully.").end();
+  } catch(e) {
+    res.status(500).send("Error posting message").end();
+  }
+  
 });
 
 router.get('/', (req, res) => {
