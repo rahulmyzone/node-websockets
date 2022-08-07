@@ -5,7 +5,7 @@ var Server = function () {
     self.ws = "";
 
     self.startWSServer = () => {
-        self.wss = new WebSocket.Server({ port: 7000 })
+        self.wss = new WebSocket.Server({ port: 9000 })
         self.wss.on('connection', ws => {
             self.ws = ws;
             self.ws.on('message', message => {
