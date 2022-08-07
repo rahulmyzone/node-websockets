@@ -34,7 +34,9 @@ server.on('upgrade', (request, socket, head) => {
 
 router.post('/send', (req, res) => {
   try {
+    console.log("Request body: "+req.body)
     wsServer.clients.forEach(function(client) {
+      console.log("Request body: "+JSON.stringify(req.body))
       client.send(JSON.stringify(req.body));
     })
     res.status(200).send("Message posted successfully.").end();
