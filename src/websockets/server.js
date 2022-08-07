@@ -1,11 +1,13 @@
-const WebSocket = require('ws')
-var Server = function () {
+const ws = require('ws');
+const express = require("express");
+
+const WSServer = function () {
     var self = this;
     self.wss = "";
     self.ws = "";
 
     self.startWSServer = () => {
-        self.wss = new WebSocket.Server({ port: 9000 })
+        self.wss = new ws.Server({ noServer: true });
         self.wss.on('connection', ws => {
             self.ws = ws;
             self.ws.on('message', message => {
@@ -26,5 +28,5 @@ var Server = function () {
     }
 }
 
-module.exports = Server;
+module.exports = {WSServer: WSServer};
 

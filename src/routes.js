@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const server = require("./websockets/server")
-var wsServer = new server();
+const {WSServer} = require("./websockets/server")
+var wsServer = new WSServer();
 
 router.get('/start', (req, res) => {
     wsServer.startWSServer();
