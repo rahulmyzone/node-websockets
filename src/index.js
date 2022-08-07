@@ -11,7 +11,7 @@ wsServer.on('connection', socket => {
   socket.on('message', (message) => {
     if(message.toString() == "ping") {
       wsServer.clients.forEach(function(client) {
-        client.send(JSON.stringify(message.toString()));
+        client.send(JSON.stringify("ping/pong"));
       })
     }
     console.log(message.toString())
@@ -53,7 +53,7 @@ router.get('/', (req, res) => {
 
 router.get('/ping', (req, res) => {
   wsServer.clients.forEach(function(client) {
-    client.send("pong");
+    client.send("ping/pong");
   })
   res
     .status(200)
