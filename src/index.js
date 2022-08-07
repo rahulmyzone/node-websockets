@@ -9,6 +9,11 @@ app.use(router);
 const wsServer = new ws.Server({ noServer: true });
 wsServer.on('connection', socket => {
   socket.on('message', (message) => {
+    if(message.toString() == "ping") {
+      wsServer.clients.forEach(function(client) {
+        client.send(JSON.stringify(message.toString()));
+      })
+    }
     console.log(message.toString())
   });
   socket.send("Hello from server");
